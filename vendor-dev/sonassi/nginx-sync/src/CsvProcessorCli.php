@@ -46,7 +46,7 @@ class CsvProcessorCli extends Object
         if ($rules = $this->di->csvProcessor->process($this->di->cmd['url'])) {
             $result = $this->di->csvProcessor->writeToFile($rules, $this->di->cmd['output-file'], $this->di->cmd['template'], $rules);
 
-            if ($result || 1) {
+            if ($result) {
                 $this->di->nginx->message('File (%s) written successfully.', [basename($this->di->cmd['output-file'])], 'success');
 
                 if (isset($this->di->cmd['reload'])) {

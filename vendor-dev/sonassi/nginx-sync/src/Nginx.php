@@ -14,7 +14,6 @@ class Nginx extends Object
     public function __construct(Client $guzzle_client)
     {
         $this->di = self::di(func_get_args());
-        $this->setConfig(parse_ini_file('config.ini'));
     }
 
     public function message($msg, $elems = [], $level = 'notice')

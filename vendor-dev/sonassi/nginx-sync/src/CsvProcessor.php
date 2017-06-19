@@ -6,7 +6,6 @@ use Philo\Blade\Blade;
 class CsvProcessor extends Object
 {
 
-    private $headers = ['02-timestamp', '03-name', '04-location', '01-ip_address'];
     private $views = __DIR__ . '/views';
     private $cache = '/tmp/nginxsync';
 
@@ -29,20 +28,20 @@ class CsvProcessor extends Object
             $rows = str_getcsv((string) $response->getBody(), "\n");
 
             // Skip header row.
+            $headers = str_getcsv($rows[0]);
             unset($rows[0]);
+
+            // Sanitise headers
+            foreach ($headers as &$header) {
+                $header = preg_replace('#[^a-z0-9-]#', '', explode(' ', strtolower($header))[0]);
+            }
 
             foreach ($rows as $id => $row) {
                 $row = str_getcsv($row);
-                if (count($this->headers) != count($row)) {
+                if (count($headers) != count($row)) {
                     $this->di->nginx->message('Invalid row count on line %d (skipping)', [$id]);
                 }
-                $row = array_combine($this->headers, $row);
-                ksort($row, SORT_NATURAL);
-
-                $keys = array_keys($row);
-                $values = array_values($row);
-                $result = preg_replace('#^[0-9]+\-#', '', $keys);
-                $row = array_combine($result, $values);
+                $row = array_combine($headers, $row);
 
                 $rules[] = $row;
             }
