@@ -1,3 +1,11 @@
+## Installation
+
+~~~~
+git clone https://github.com/sonassi/nginx-sync.git
+cd nginx-sync
+composer update
+~~~~
+
 ## Usage
 
 ~~~
