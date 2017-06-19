@@ -1,0 +1,15 @@
+{
+    "name": "sonassi/di",
+    "authors": [
+        {
+            "name": "Benjamin Lessani",
+            "email": "ben@sonassi.com"
+        }
+    ],
+    "require": {},
+    "autoload" : {
+        "psr-4" : {
+            "Sonassi\\Di\\": "src"
+        }
+    }
+}

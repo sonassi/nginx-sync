@@ -1,0 +1,21 @@
+{
+    "require": {
+        "guzzlehttp/guzzle": "~6.0",
+        "sonassi/di": "@dev",
+        "sonassi/nginx-sync": "@dev",
+        "php-di/php-di": "^5.4",
+        "philo/laravel-blade": "3.*",
+        "nategood/commando": "^0.2.9",
+        "symfony/process": "^3.3"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "vendor-dev/sonassi/nginx-sync"
+        },
+        {
+            "type": "path",
+            "url": "vendor-dev/sonassi/di"
+        }
+    ]
+}
